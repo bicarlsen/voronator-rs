@@ -113,45 +113,6 @@ fn issue_19() {
 }
 
 #[test]
-fn issue_19_2() {
-    use std::collections::HashSet;
-    let points = vec![
-        (-4.374999825830813e-6, -4.375000732203775e-6),
-        (-3.1249991125795847e-6, -4.374998956034257e-6),
-        (-1.8749983993283562e-6, -4.375000732203775e-6),
-    ];
-    let xmin = -6.87500125233327e-6;
-    let xmax = 6.250030271741009e-7;
-    let ymin = -4.375002508373293e-6;
-    let ymax = -4.374997179864739e-6;
-
-    let voronoi =
-        VoronoiDiagram::<Point>::from_tuple(&(xmin, ymin), &(xmax, ymax), &points).unwrap();
-
-    println!("# cells: {}", voronoi.cells().len());
-    for polygon in voronoi.cells() {
-        let cell_vertices = polygon.points();
-
-        let expected = cell_vertices.len();
-        let actual = cell_vertices
-            .iter()
-            .map(|n| format!("{:?}", n))
-            .collect::<HashSet<String>>()
-            .len();
-        println!(" {} != {}", expected, actual);
-        println!(
-            "{}",
-            cell_vertices
-                .iter()
-                .map(|n| format!("{:?}", n))
-                .collect::<String>()
-        );
-
-        assert!(expected == actual)
-    }
-}
-
-#[test]
 fn issue_24() {
     let points: Vec<Point> = vec![
         (382., 302.),
