@@ -83,7 +83,7 @@ fn duplicated_points() {
 }
 
 #[test]
-fn issue_19() {
+fn small_padding() {
     use std::collections::HashSet;
     let points = vec![(-2.0, 0.0), (-2.1, 1.0), (-2.2, 0.0)];
     let voronoi =
